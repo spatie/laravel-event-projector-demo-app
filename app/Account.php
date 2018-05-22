@@ -24,9 +24,6 @@ class Account extends Model
 
     public function subtractMoney(int $amount)
     {
-        $this->balance -= $amount;
-        $this->save();
-
         event(new MoneySubtracted($this->id, $amount));
     }
 

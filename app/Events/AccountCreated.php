@@ -2,14 +2,8 @@
 
 namespace App\Events;
 
-use App\Account;
-use Spatie\EventProjector\ShouldBeStored;
-use Spatie\EventProjector\StoresEvent;
-
 class AccountCreated implements ShouldBeStored
 {
-    use StoresEvent;
-
     /** array */
     public $accountAttributes;
 

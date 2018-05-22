@@ -2,14 +2,10 @@
 
 namespace App\Events;
 
-use App\Account;
 use Spatie\EventProjector\ShouldBeStored;
-use Spatie\EventProjector\StoresEvent;
 
 class MoneyAdded implements ShouldBeStored
 {
-    use StoresEvent;
-
     /** @var int */
     public $accountId;
 
