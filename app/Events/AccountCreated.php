@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Account;
 use Spatie\EventProjector\ShouldBeStored;
 use Spatie\EventProjector\StoresEvent;
 
@@ -9,16 +10,11 @@ class AccountCreated implements ShouldBeStored
 {
     use StoresEvent;
 
-    /** @var int */
-    public  $accountId;
+    /** @var \App\Account */
+    public $account;
 
-    /** @var string */
-    public  $name;
-
-    public function __construct(int $accountId, string $name)
+    public function __construct(Account $account)
     {
-        $this->accountId = $accountId;
-
-        $this->name = $name;
+        $this->account = $account;
     }
 }
