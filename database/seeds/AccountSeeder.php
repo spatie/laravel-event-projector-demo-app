@@ -11,13 +11,12 @@ class AccountSeeder extends Seeder
     {
         $realNow = now();
 
-        Carbon::setTestNow(now()->subYear(2));
+        Carbon::setTestNow(now()->subMonths(2));
 
         while ($realNow->isFuture()) {
 
             if (faker()->boolean(80)) {
                 Account::createWithAttributes(['name' => faker()->name]);
-
             }
 
             Account::get()->each(function (Account $account) {
