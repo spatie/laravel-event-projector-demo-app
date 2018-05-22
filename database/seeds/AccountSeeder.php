@@ -1,6 +1,7 @@
 <?php
 
 use App\Account;
+use App\Events\AccountCreated;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
 
@@ -15,7 +16,8 @@ class AccountSeeder extends Seeder
         while ($realNow->isFuture()) {
 
             if (faker()->boolean(80)) {
-                (new Account(['name' => faker()->name]))->save();
+                Account::createWithAttributes(['name' => faker()->name]);
+
             }
 
             Account::get()->each(function (Account $account) {
@@ -28,7 +30,7 @@ class AccountSeeder extends Seeder
                 }
 
                 if (faker()->boolean(1)) {
-                    $account->delete();
+                    $account->close();
                 }
             });
 

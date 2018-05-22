@@ -10,22 +10,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Account extends Model
 {
-    public static function boot()
-    {
-        static::created(function (Account $account) {
-            event(new AccountCreated($account->getAttributes()));
-        });
+    protected $guarded = [];
 
-        static::deleted(function (Account $account) {
-            event(new AccountDeleted($account->id));
-        });
+    public static function createWithAttributes(array $attributes)
+    {
+        event(new AccountCreated($attributes));
     }
 
     public function addMoney(int $amount)
     {
-        $this->balance += $amount;
-        $this->save();
-
         event(new MoneyAdded($this->id, $amount));
     }
 
@@ -35,5 +28,10 @@ class Account extends Model
         $this->save();
 
         event(new MoneySubtracted($this->id, $amount));
+    }
+
+    public function close()
+    {
+        event(new AccountDeleted($this->id));
     }
 }
