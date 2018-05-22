@@ -6,9 +6,13 @@ use App\Account;
 use App\Events\AccountCreated;
 use App\Events\AccountDeleted;
 use App\Events\MoneyAdded;
+use Spatie\EventProjector\Projectors\Projector;
+use Spatie\EventProjector\Projectors\ProjectsEvents;
 
-class AccountBalanceProjector
+class AccountBalanceProjector implements Projector
 {
+    use ProjectsEvents;
+
     public $handlesEvents = [
         AccountCreated::class => 'onAccountCreated',
         MoneyAdded::class => 'onMoneyAdded',

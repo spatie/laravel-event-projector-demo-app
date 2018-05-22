@@ -5,9 +5,13 @@ namespace App\Projectors;
 use App\Events\MoneyAdded;
 use App\Events\MoneySubtracted;
 use App\TransactionCount;
+use Spatie\EventProjector\Projectors\Projector;
+use Spatie\EventProjector\Projectors\ProjectsEvents;
 
-class TransactionCountProjector
+class TransactionCountProjector implements Projector
 {
+    use ProjectsEvents;
+
     public $handlesEvents = [
         MoneyAdded::class => 'onMoneyAdded',
         MoneySubtracted::class => 'onMoneySubtracted',
