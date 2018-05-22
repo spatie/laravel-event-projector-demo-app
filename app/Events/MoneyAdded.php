@@ -10,15 +10,15 @@ class MoneyAdded implements ShouldBeStored
 {
     use StoresEvent;
 
-    /** @var \App\Account */
-    public $account;
+    /** @var int */
+    public $accountId;
 
     /** @var int */
     public $amount;
 
-    public function __construct(Account $account, int $amount)
+    public function __construct(int $accountId, int $amount)
     {
-        $this->account = $account;
+        $this->accountId = $accountId;
 
         $this->amount = $amount;
     }

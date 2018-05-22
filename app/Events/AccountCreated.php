@@ -10,11 +10,11 @@ class AccountCreated implements ShouldBeStored
 {
     use StoresEvent;
 
-    /** @var \App\Account */
-    public $account;
+    /** array */
+    public $accountAttributes;
 
-    public function __construct(Account $account)
+    public function __construct(array $accountAttributes)
     {
-        $this->account = $account;
+        $this->accountAttributes = $accountAttributes;
     }
 }

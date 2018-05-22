@@ -19,7 +19,8 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.6.*",
         "laravel/tinker": "^1.0",
-        "spatie/laravel-event-projector": "@dev"
+        "spatie/laravel-event-projector": "@dev",
+        "spatie/valuestore": "^1.2"
     },
     "require-dev": {
         "filp/whoops": "^2.0",

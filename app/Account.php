@@ -13,7 +13,7 @@ class Account extends Model
     public static function boot()
     {
         static::created(function (Account $account) {
-            event(new AccountCreated($account));
+            event(new AccountCreated($account->getAttributes()));
         });
 
         static::deleted(function (Account $account) {
@@ -23,11 +23,17 @@ class Account extends Model
 
     public function addMoney(int $amount)
     {
-        event(new MoneyAdded($this, $amount));
+        $this->balance += $amount;
+        $this->save();
+
+        event(new MoneyAdded($this->id, $amount));
     }
 
     public function subtractMoney(int $amount)
     {
-        event(new MoneySubtracted($this, $amount));
+        $this->balance -= $amount;
+        $this->save();
+
+        event(new MoneySubtracted($this->id, $amount));
     }
 }
