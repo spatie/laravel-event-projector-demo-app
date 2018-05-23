@@ -2,6 +2,7 @@
 
 namespace App\Reactors;
 
+use App\Account;
 use App\Events\MoneyAdded;
 use App\Mail\BigAmountAddedMail;
 use Illuminate\Support\Facades\Mail;
@@ -12,9 +13,9 @@ class BigAmountAddedReactor
         MoneyAdded::class => 'onMoneyAdded',
     ];
 
-    public function onBigAmountAdded(MoneyAdded $event)
+    public function onMoneyAdded(MoneyAdded $event)
     {
-        if ($event->amount < 10000) {
+        if ($event->amount < 900) {
             return;
         }
 
