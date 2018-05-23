@@ -4,15 +4,6 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "type": "project",
-    "repositories": {
-        "dev-package": {
-            "type": "path",
-            "url": "../laravel-event-projector",
-            "options": {
-                "symlink": true
-            }
-        }
-    },
     "require": {
         "php": "^7.1.3",
         "barryvdh/laravel-ide-helper": "^2.4",
