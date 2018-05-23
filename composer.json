@@ -20,6 +20,7 @@
         "laravel/framework": "5.6.*",
         "laravel/tinker": "^1.0",
         "spatie/laravel-event-projector": "@dev",
+        "spatie/laravel-tail": "^3.1",
         "spatie/valuestore": "^1.2"
     },
     "require-dev": {

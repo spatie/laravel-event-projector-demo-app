@@ -1,0 +1,1 @@
+Amount {{ $this->amount }} was added to account {{ $this->account->id }}.
