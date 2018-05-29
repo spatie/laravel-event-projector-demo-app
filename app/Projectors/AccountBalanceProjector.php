@@ -13,11 +13,16 @@ class AccountBalanceProjector implements Projector
 {
     use ProjectsEvents;
 
+    /*
+     * Here you can specify which event should trigger which method
+     */
     public $handlesEvents = [
         AccountCreated::class => 'onAccountCreated',
         MoneyAdded::class => 'onMoneyAdded',
         MoneySubtracted::class => 'onMoneySubtracted',
         AccountDeleted::class => 'onAccountDeleted',
+
+        // broke mail sent event => onBrokenMailSent
     ];
 
     public function onAccountCreated(AccountCreated $event)
@@ -39,6 +44,10 @@ class AccountBalanceProjector implements Projector
         $account = Account::find($event->accountId);
 
         $account->balance += $event->amount;
+
+        if ($account->balance >= 0 ) {
+            $this->broke_mail_sent = false;
+        }
 
         $account->save();
     }
