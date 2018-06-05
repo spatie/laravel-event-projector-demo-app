@@ -2,10 +2,20 @@
 
 namespace App\Reactors;
 
+use App\Account;
+use App\Events\BrokeMailSent;
 use App\Events\MoneySubtracted;
+use App\Mail\BrokeMail;
 
-class BrokeReactor
+use Exception;
+use Illuminate\Support\Facades\Mail;
+use Spatie\EventProjector\EventHandlers\EventHandler;
+use Spatie\EventProjector\EventHandlers\HandlesEvents;
+
+class BrokeReactor implements EventHandler
 {
+    use HandlesEvents;
+
     public $handlesEvents = [
         MoneySubtracted::class => 'onMoneySubtracted',
     ];
@@ -14,12 +24,11 @@ class BrokeReactor
     {
         $account = Account::find($event->accountId);
 
-        if ($account->isBroke() && ! $account->broke_mail_sent)
+        if ($account->isBroke())
         {
-            // send mail
+            Mail::to($account->email)->send(new BrokeMail($account));
 
-            // send out broke event
+            event(new BrokeMailSent($account->id));
         }
     }
-
 }

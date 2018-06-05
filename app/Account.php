@@ -12,6 +12,10 @@ class Account extends Model
 {
     protected $guarded = [];
 
+    protected $casts = [
+        'broke_mail_send' => 'bool',
+    ];
+
     public static function createWithAttributes(array $attributes)
     {
         event(new AccountCreated($attributes));
@@ -30,5 +34,10 @@ class Account extends Model
     public function close()
     {
         event(new AccountDeleted($this->id));
+    }
+
+    public function isBroke(): bool
+    {
+        return $this->balance < 0;
     }
 }

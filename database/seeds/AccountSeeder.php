@@ -16,7 +16,10 @@ class AccountSeeder extends Seeder
         while ($realNow->isFuture()) {
 
             if (faker()->boolean(80)) {
-                Account::createWithAttributes(['name' => faker()->name]);
+                Account::createWithAttributes([
+                    'name' => faker()->name,
+                    'email' => faker()->email,
+                ]);
             }
 
             Account::get()->each(function (Account $account) {
@@ -25,7 +28,7 @@ class AccountSeeder extends Seeder
                 }
 
                 if (faker()->boolean(50)) {
-                    $account->addMoney(faker()->numberBetween(1, 500));
+                    $account->subtractMoney(faker()->numberBetween(1, 900));
                 }
 
                 if (faker()->boolean(1)) {

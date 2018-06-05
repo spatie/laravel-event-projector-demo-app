@@ -5,7 +5,9 @@ namespace App\Projectors;
 use App\Account;
 use App\Events\AccountCreated;
 use App\Events\AccountDeleted;
+use App\Events\BrokeMailSent;
 use App\Events\MoneyAdded;
+use App\Events\MoneySubtracted;
 use Spatie\EventProjector\Projectors\Projector;
 use Spatie\EventProjector\Projectors\ProjectsEvents;
 
@@ -21,8 +23,7 @@ class AccountBalanceProjector implements Projector
         MoneyAdded::class => 'onMoneyAdded',
         MoneySubtracted::class => 'onMoneySubtracted',
         AccountDeleted::class => 'onAccountDeleted',
-
-        // broke mail sent event => onBrokenMailSent
+        BrokeMailSent::class => 'onBrokeMailSent'
     ];
 
     public function onAccountCreated(AccountCreated $event)
@@ -32,6 +33,7 @@ class AccountBalanceProjector implements Projector
 
     public function onMoneyAdded(MoneyAdded $event)
     {
+
         $account = Account::find($event->accountId);
 
         $account->balance += $event->amount;
@@ -39,15 +41,24 @@ class AccountBalanceProjector implements Projector
         $account->save();
     }
 
-    public function onMoneySubtracted(MoneyAdded $event)
+    public function onMoneySubtracted(MoneySubtracted $event)
     {
         $account = Account::find($event->accountId);
 
         $account->balance -= $event->amount;
 
+        $account->save();
+
         if ($account->balance >= 0 ) {
             $this->broke_mail_sent = false;
         }
+    }
+
+    public function onBrokeMailSent(BrokeMailSent $event)
+    {
+        $account = Account::find($event->accountId);
+
+        $account->broke_mail_sent = true;
 
         $account->save();
     }
