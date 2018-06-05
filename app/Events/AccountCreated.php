@@ -2,6 +2,8 @@
 
 namespace App\Events;
 
+use Spatie\EventProjector\ShouldBeStored;
+
 class AccountCreated implements ShouldBeStored
 {
     /** array */

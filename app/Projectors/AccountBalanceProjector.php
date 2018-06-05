@@ -48,7 +48,7 @@ class AccountBalanceProjector implements Projector
         Account::find($event->accountId)->delete();
     }
 
-    public function onStartingEventReplay()
+    public function resetState()
     {
         Account::truncate();
     }
