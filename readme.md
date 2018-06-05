@@ -9,4 +9,4 @@ This repo contains a Laravel app with a dev version of the [laravel-event-projec
 3. Run `composer install`
 4. Run `php artisan migrate:fresh --seed`
 
-After these steps you should have many `StoredEvents`. The  `accounts` and `transaction_counts` tables should be filled.
+After these steps you should have many `StoredEvent`s. The  `accounts` and `transaction_counts` tables should be filled.
