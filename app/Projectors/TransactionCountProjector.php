@@ -64,4 +64,9 @@ class TransactionCountProjector implements Projector, Snapshottable
             TransactionCount::create($modelAttributes);
         }
     }
+
+    public function resetState()
+    {
+        TransactionCount::truncate();
+    }
 }
