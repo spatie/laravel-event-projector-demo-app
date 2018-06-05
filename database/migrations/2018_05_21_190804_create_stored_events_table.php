@@ -12,7 +12,8 @@ class CreateStoredEventsTable extends Migration
             $table->increments('id');
             $table->string('event_class');
             $table->text('event_properties');
-            $table->timestamps();
+            $table->schemalessAttributes('meta_data');
+            $table->timestamp('created_at')->nullable();
         });
     }
 
