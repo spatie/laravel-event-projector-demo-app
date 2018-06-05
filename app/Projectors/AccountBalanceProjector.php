@@ -38,7 +38,7 @@ class AccountBalanceProjector implements Projector
     {
         $account = Account::find($event->accountId);
 
-        $account->balance += $event->amount;
+        $account->balance -= $event->amount;
 
         $account->save();
     }
