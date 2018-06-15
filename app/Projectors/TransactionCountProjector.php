@@ -56,7 +56,7 @@ class TransactionCountProjector implements Projector, Snapshottable
         $snapshot->write($serializedModels);
     }
 
-    public function restoreSnapshot(Snapshot $snapshot)
+    public function restoreFromSnapshot(Snapshot $snapshot)
     {
         $serializedModels = unserialize($snapshot->read(), true);
 
