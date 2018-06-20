@@ -13,4 +13,14 @@ class AccountCreated implements ShouldBeStored
     {
         $this->accountAttributes = $accountAttributes;
     }
+
+    public function getStreamName()
+    {
+        return 'accounts';
+    }
+
+    public function getStreamId()
+    {
+        return $this->accountAttributes['uuid'];
+    }
 }

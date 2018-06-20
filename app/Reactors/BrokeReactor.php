@@ -22,13 +22,13 @@ class BrokeReactor implements EventHandler
 
     public function onMoneySubtracted(MoneySubtracted $event)
     {
-        $account = Account::find($event->accountId);
+        $account = Account::uuid($event->accountUuid);
 
         if ($account->isBroke())
         {
             Mail::to($account->email)->send(new BrokeMail($account));
 
-            event(new BrokeMailSent($account->id));
+            event(new BrokeMailSent($account->uuid));
         }
     }
 }

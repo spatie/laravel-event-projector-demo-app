@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Projectors\AccountBalanceProjector;
 use App\Projectors\TransactionCountProjector;
+use App\Projectors\UnrelatedProjector;
 use App\Reactors\BigAmountAddedReactor;
 use App\Reactors\BrokeReactor;
 use Illuminate\Support\ServiceProvider;
@@ -16,6 +17,7 @@ class EventProjectorServiceProvider extends ServiceProvider
         EventProjectionist::addProjectors([
             AccountBalanceProjector::class,
             TransactionCountProjector::class,
+            UnrelatedProjector::class,
         ]);
 
         EventProjectionist::addReactors([

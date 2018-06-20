@@ -20,9 +20,11 @@ class TransactionCountProjector implements Projector, Snapshottable
         MoneySubtracted::class => 'onMoneySubtracted',
     ];
 
+    public $handlesStreams = ['accounts'];
+
     public function onMoneyAdded(MoneyAdded $event)
     {
-        $transactionCounter = TransactionCount::firstOrCreate(['account_id' => $event->accountId]);
+        $transactionCounter = TransactionCount::firstOrCreate(['account_uuid' => $event->accountUuid]);
 
         $transactionCounter->count += 1;
 
@@ -31,7 +33,7 @@ class TransactionCountProjector implements Projector, Snapshottable
 
     public function onMoneySubtracted(MoneySubtracted $event)
     {
-        $transactionCounter = TransactionCount::firstOrCreate(['account_id' => $event->accountId]);
+        $transactionCounter = TransactionCount::firstOrCreate(['account_uuid' => $event->accountUuid]);
 
         $transactionCounter->count += 1;
 

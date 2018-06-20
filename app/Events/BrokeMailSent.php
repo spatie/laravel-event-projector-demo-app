@@ -6,11 +6,23 @@ use Spatie\EventProjector\ShouldBeStored;
 
 class BrokeMailSent implements ShouldBeStored
 {
-    /** @var int */
-    public $accountId;
 
-    public function __construct(int $accountId)
+
+    /** @var int */
+    public $accountUuid;
+
+    public function __construct(string $accountUuid)
     {
-        $this->accountId = $accountId;
+        $this->accountUuid = $accountUuid;
+    }
+
+    public function getStreamName()
+    {
+        return 'accounts';
+    }
+
+    public function getStreamId()
+    {
+        return $this->accountUuid;
     }
 }

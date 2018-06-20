@@ -7,15 +7,25 @@ use Spatie\EventProjector\ShouldBeStored;
 class MoneySubtracted implements ShouldBeStored
 {
     /** @var int */
-    public $accountId;
+    public $accountUuid;
 
     /** @var int */
     public $amount;
 
-    public function __construct(int $accountId, int $amount)
+    public function __construct(string $accountUuid, int $amount)
     {
-        $this->accountId = $accountId;
+        $this->accountUuid = $accountUuid;
 
         $this->amount = $amount;
+    }
+
+    public function getStreamName()
+    {
+        return 'accounts';
+    }
+
+    public function getStreamId()
+    {
+        return $this->accountUuid;
     }
 }

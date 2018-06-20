@@ -7,10 +7,20 @@ use Spatie\EventProjector\ShouldBeStored;
 class AccountDeleted implements ShouldBeStored
 {
     /** @var int */
-    public $accountId;
+    public $accountUuid;
 
-    public function __construct(int $accountId)
+    public function __construct(string $accountUuid)
     {
-        $this->accountId = $accountId;
+        $this->accountUuid = $accountUuid;
+    }
+
+    public function getStreamName()
+    {
+        return 'accounts';
+    }
+
+    public function getStreamId()
+    {
+        return $this->accountUuid;
     }
 }

@@ -7,6 +7,7 @@ use App\Events\AccountDeleted;
 use App\Events\MoneyAdded;
 use App\Events\MoneySubtracted;
 use Illuminate\Database\Eloquent\Model;
+use Ramsey\Uuid\Uuid;
 
 class Account extends Model
 {
@@ -16,28 +17,39 @@ class Account extends Model
         'broke_mail_send' => 'bool',
     ];
 
-    public static function createWithAttributes(array $attributes)
+    public static function uuid(string $uuid): ?Account
     {
+        return static::where('uuid', $uuid)->first();
+    }
+
+    public static function createWithAttributes(array $attributes): Account
+    {
+        $attributes['uuid'] = (string) Uuid::uuid4();
+
         event(new AccountCreated($attributes));
+
+        return static::uuid($attributes['uuid']);
     }
 
     public function addMoney(int $amount)
     {
-        event(new MoneyAdded($this->id, $amount));
+        event(new MoneyAdded($this->uuid, $amount));
     }
 
     public function subtractMoney(int $amount)
     {
-        event(new MoneySubtracted($this->id, $amount));
+        event(new MoneySubtracted($this->uuid, $amount));
     }
 
     public function close()
     {
-        event(new AccountDeleted($this->id));
+        event(new AccountDeleted($this->uuid));
     }
 
     public function isBroke(): bool
     {
         return $this->balance < 0;
     }
+
+
 }

@@ -10,7 +10,7 @@ class CreateTransactionCountsTable extends Migration
     {
         Schema::create('transaction_counts', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('account_id');
+            $table->string('account_uuid');
             $table->integer('count')->default(0);
             $table->timestamps();
         });
