@@ -15,5 +15,5 @@ class UnrelatedProjector implements Projector
 {
     use ProjectsEvents;
 
-    public $handlesStreams = ['other-stream'];
+    public $trackStream = ['other-stream'];
 }

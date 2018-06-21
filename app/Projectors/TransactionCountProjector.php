@@ -20,7 +20,7 @@ class TransactionCountProjector implements Projector, Snapshottable
         MoneySubtracted::class => 'onMoneySubtracted',
     ];
 
-    public $handlesStreams = ['accounts'];
+    public $trackStream = ['accounts'];
 
     public function onMoneyAdded(MoneyAdded $event)
     {

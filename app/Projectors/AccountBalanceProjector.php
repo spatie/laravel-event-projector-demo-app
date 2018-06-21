@@ -26,7 +26,7 @@ class AccountBalanceProjector implements Projector
         BrokeMailSent::class => 'onBrokeMailSent'
     ];
 
-    public $handlesStreams = ['accounts'];
+    public $trackStream = ['accounts'];
 
     public function onAccountCreated(AccountCreated $event)
     {
