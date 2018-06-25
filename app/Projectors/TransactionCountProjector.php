@@ -5,6 +5,7 @@ namespace App\Projectors;
 use App\Events\MoneyAdded;
 use App\Events\MoneySubtracted;
 use App\TransactionCount;
+use Spatie\EventProjector\Models\StoredEvent;
 use Spatie\EventProjector\Projectors\Projector;
 use Spatie\EventProjector\Projectors\ProjectsEvents;
 use Spatie\EventProjector\Snapshots\CanTakeSnapshot;
@@ -19,8 +20,6 @@ class TransactionCountProjector implements Projector, Snapshottable
         MoneyAdded::class => 'onMoneyAdded',
         MoneySubtracted::class => 'onMoneySubtracted',
     ];
-
-    public $trackStream = ['accounts'];
 
     public function onMoneyAdded(MoneyAdded $event)
     {
@@ -70,5 +69,12 @@ class TransactionCountProjector implements Projector, Snapshottable
     public function resetState()
     {
         TransactionCount::truncate();
+    }
+
+    public function groupProjectorStatusBy(StoredEvent $storedEvent): array
+    {
+        return [
+            'accountUuid' => $storedEvent->event->accountUuid,
+        ];
     }
 }

@@ -6,21 +6,16 @@ use Spatie\EventProjector\ShouldBeStored;
 
 class AccountCreated implements ShouldBeStored
 {
-    /** array */
+    /** @var string */
+    public $accountUuid;
+
+    /** @var array */
     public $accountAttributes;
 
     public function __construct(array $accountAttributes)
     {
+        $this->accountUuid = $accountAttributes['uuid'];
+
         $this->accountAttributes = $accountAttributes;
-    }
-
-    public function getStreamName()
-    {
-        return 'accounts';
-    }
-
-    public function getStreamId()
-    {
-        return $this->accountAttributes['uuid'];
     }
 }

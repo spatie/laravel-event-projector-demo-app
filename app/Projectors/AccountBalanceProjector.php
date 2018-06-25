@@ -8,6 +8,7 @@ use App\Events\AccountDeleted;
 use App\Events\BrokeMailSent;
 use App\Events\MoneyAdded;
 use App\Events\MoneySubtracted;
+use Spatie\EventProjector\Models\StoredEvent;
 use Spatie\EventProjector\Projectors\Projector;
 use Spatie\EventProjector\Projectors\ProjectsEvents;
 
@@ -25,8 +26,6 @@ class AccountBalanceProjector implements Projector
         AccountDeleted::class => 'onAccountDeleted',
         BrokeMailSent::class => 'onBrokeMailSent'
     ];
-
-    public $trackStream = ['accounts'];
 
     public function onAccountCreated(AccountCreated $event)
     {
@@ -72,5 +71,12 @@ class AccountBalanceProjector implements Projector
     public function resetState()
     {
         Account::truncate();
+    }
+
+    public function groupProjectorStatusBy(StoredEvent $storedEvent): array
+    {
+        return [
+            'accountUuid' => $storedEvent->event->accountUuid,
+        ];
     }
 }

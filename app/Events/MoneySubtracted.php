@@ -6,7 +6,7 @@ use Spatie\EventProjector\ShouldBeStored;
 
 class MoneySubtracted implements ShouldBeStored
 {
-    /** @var int */
+    /** @var string */
     public $accountUuid;
 
     /** @var int */
@@ -17,15 +17,5 @@ class MoneySubtracted implements ShouldBeStored
         $this->accountUuid = $accountUuid;
 
         $this->amount = $amount;
-    }
-
-    public function getStreamName()
-    {
-        return 'accounts';
-    }
-
-    public function getStreamId()
-    {
-        return $this->accountUuid;
     }
 }
