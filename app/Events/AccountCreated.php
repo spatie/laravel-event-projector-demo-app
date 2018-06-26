@@ -12,6 +12,9 @@ class AccountCreated implements ShouldBeStored
     /** @var array */
     public $accountAttributes;
 
+    /*
+     *
+     */
     public function __construct(array $accountAttributes)
     {
         $this->accountUuid = $accountAttributes['uuid'];
