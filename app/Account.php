@@ -17,11 +17,6 @@ class Account extends Model
         'broke_mail_send' => 'bool',
     ];
 
-    public static function uuid(string $uuid): ?Account
-    {
-        return static::where('uuid', $uuid)->first();
-    }
-
     public static function createWithAttributes(array $attributes): Account
     {
         $attributes['uuid'] = (string) Uuid::uuid4();
@@ -51,5 +46,8 @@ class Account extends Model
         return $this->balance < 0;
     }
 
-
+    public static function uuid(string $uuid): ?Account
+    {
+        return static::where('uuid', $uuid)->first();
+    }
 }

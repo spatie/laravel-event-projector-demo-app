@@ -1,7 +1,6 @@
 <?php
 
 use App\Account;
-use App\Events\AccountCreated;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
 
@@ -14,7 +13,6 @@ class AccountSeeder extends Seeder
         Carbon::setTestNow(now()->subWeeks(2));
 
         while ($realNow->isFuture()) {
-
             if (faker()->boolean(80)) {
                 Account::createWithAttributes([
                     'name' => faker()->name,

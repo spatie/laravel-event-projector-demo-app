@@ -61,7 +61,7 @@ class TransactionCountProjector implements Projector, Snapshottable
     {
         $serializedModels = unserialize($snapshot->read(), true);
 
-        foreach($serializedModels as $modelAttributes) {
+        foreach ($serializedModels as $modelAttributes) {
             TransactionCount::create($modelAttributes);
         }
     }

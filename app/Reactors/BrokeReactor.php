@@ -7,7 +7,6 @@ use App\Events\BrokeMailSent;
 use App\Events\MoneySubtracted;
 use App\Mail\BrokeMail;
 
-use Exception;
 use Illuminate\Support\Facades\Mail;
 use Spatie\EventProjector\EventHandlers\EventHandler;
 use Spatie\EventProjector\EventHandlers\HandlesEvents;
@@ -24,8 +23,7 @@ class BrokeReactor implements EventHandler
     {
         $account = Account::uuid($event->accountUuid);
 
-        if ($account->isBroke())
-        {
+        if ($account->isBroke()) {
             Mail::to($account->email)->send(new BrokeMail($account));
 
             event(new BrokeMailSent($account->uuid));

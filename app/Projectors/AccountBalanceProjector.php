@@ -49,7 +49,7 @@ class AccountBalanceProjector implements Projector
 
         $account->save();
 
-        if ($account->balance >= 0 ) {
+        if ($account->balance >= 0) {
             $this->broke_mail_sent = false;
         }
     }
