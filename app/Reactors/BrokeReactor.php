@@ -23,10 +23,16 @@ class BrokeReactor implements EventHandler
     {
         $account = Account::uuid($event->accountUuid);
 
-        if ($account->isBroke()) {
-            Mail::to($account->email)->send(new BrokeMail($account));
-
-            event(new BrokeMailSent($account->uuid));
+        if (! $account->isBroke()) {
+            return;
         }
+
+        if ($account->broke_mail_sent) {
+            return;
+        }
+
+        Mail::to($account->email)->send(new BrokeMail($account));
+
+        event(new BrokeMailSent($account->uuid));
     }
 }
