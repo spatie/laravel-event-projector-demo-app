@@ -73,10 +73,8 @@ class AccountBalanceProjector implements Projector
         Account::truncate();
     }
 
-    public function streamEventsBy(StoredEvent $storedEvent): array
+    public function streamEventsBy(): string
     {
-        return [
-            'accountUuid' => $storedEvent->event->accountUuid,
-        ];
+        return 'accountUuid';
     }
 }
