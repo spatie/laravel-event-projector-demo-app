@@ -8,7 +8,6 @@ use App\Events\AccountDeleted;
 use App\Events\BrokeMailSent;
 use App\Events\MoneyAdded;
 use App\Events\MoneySubtracted;
-use Spatie\EventProjector\Models\StoredEvent;
 use Spatie\EventProjector\Projectors\Projector;
 use Spatie\EventProjector\Projectors\ProjectsEvents;
 
