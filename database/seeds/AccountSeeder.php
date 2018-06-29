@@ -30,7 +30,7 @@ class AccountSeeder extends Seeder
                 }
 
                 if (faker()->boolean(1)) {
-                    $account->close();
+                    $account->delete();
                 }
             });
 

@@ -45,7 +45,7 @@ class Account extends Model
         event(new MoneySubtracted($this->uuid, $amount));
     }
 
-    public function close()
+    public function delete()
     {
         event(new AccountDeleted($this->uuid));
     }
