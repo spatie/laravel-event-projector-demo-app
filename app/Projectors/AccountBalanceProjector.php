@@ -37,6 +37,10 @@ class AccountBalanceProjector implements Projector
 
         $account->balance += $event->amount;
 
+        if ($account->balance >= 0) {
+            $this->broke_mail_sent = false;
+        }
+
         $account->save();
     }
 
@@ -45,10 +49,6 @@ class AccountBalanceProjector implements Projector
         $account = Account::uuid($event->accountUuid);
 
         $account->balance -= $event->amount;
-
-        if ($account->balance >= 0) {
-            $this->broke_mail_sent = false;
-        }
 
         $account->save();
     }

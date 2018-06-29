@@ -6,7 +6,6 @@ use App\Account;
 use App\Events\BrokeMailSent;
 use App\Events\MoneySubtracted;
 use App\Mail\BrokeMail;
-
 use Illuminate\Support\Facades\Mail;
 use Spatie\EventProjector\EventHandlers\EventHandler;
 use Spatie\EventProjector\EventHandlers\HandlesEvents;
