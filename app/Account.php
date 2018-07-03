@@ -3,7 +3,7 @@
 namespace App;
 
 use App\Events\AccountCreated;
-use App\Events\AccountDeleted;
+use App\Events\AccountClosed;
 use App\Events\MoneyAdded;
 use App\Events\MoneySubtracted;
 use Illuminate\Database\Eloquent\Model;
@@ -45,9 +45,9 @@ class Account extends Model
         event(new MoneySubtracted($this->uuid, $amount));
     }
 
-    public function delete()
+    public function close()
     {
-        event(new AccountDeleted($this->uuid));
+        event(new AccountClosed($this->uuid));
     }
 
     public function isBroke(): bool

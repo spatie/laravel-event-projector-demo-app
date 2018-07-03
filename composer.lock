@@ -1503,7 +1503,7 @@
             "dist": {
                 "type": "path",
                 "url": "../laravel-event-projector",
-                "reference": "3a4fdd1d5b02d7652a6854c7a8df6fba12429da1",
+                "reference": "8a6680ac5df9d53d51d0bc8796318776b9e26d44",
                 "shasum": null
             },
             "require": {

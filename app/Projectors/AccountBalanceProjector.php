@@ -4,7 +4,7 @@ namespace App\Projectors;
 
 use App\Account;
 use App\Events\AccountCreated;
-use App\Events\AccountDeleted;
+use App\Events\AccountClosed;
 use App\Events\BrokeMailSent;
 use App\Events\MoneyAdded;
 use App\Events\MoneySubtracted;
@@ -22,7 +22,7 @@ class AccountBalanceProjector implements Projector
         AccountCreated::class => 'onAccountCreated',
         MoneyAdded::class => 'onMoneyAdded',
         MoneySubtracted::class => 'onMoneySubtracted',
-        AccountDeleted::class => 'onAccountDeleted',
+        AccountClosed::class => 'onAccountDeleted',
         BrokeMailSent::class => 'onBrokeMailSent'
     ];
 
@@ -62,7 +62,7 @@ class AccountBalanceProjector implements Projector
         $account->save();
     }
 
-    public function onAccountDeleted(AccountDeleted $event)
+    public function onAccountDeleted(AccountClosed $event)
     {
         Account::uuid($event->accountUuid)->delete();
     }

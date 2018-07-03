@@ -4,7 +4,7 @@ namespace App\Events;
 
 use Spatie\EventProjector\ShouldBeStored;
 
-class AccountDeleted implements ShouldBeStored
+class AccountClosed implements ShouldBeStored
 {
     /** @var string */
     public $accountUuid;

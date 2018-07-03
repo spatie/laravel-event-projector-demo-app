@@ -8,4 +8,9 @@ use Spatie\EventProjector\Projectors\ProjectsEvents;
 class UnrelatedProjector implements Projector
 {
     use ProjectsEvents;
+
+    public function resetState()
+    {
+
+    }
 }

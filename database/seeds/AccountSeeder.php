@@ -10,7 +10,7 @@ class AccountSeeder extends Seeder
     {
         $realNow = now();
 
-        Carbon::setTestNow(now()->subDay(1));
+        Carbon::setTestNow(now()->subMonth(2));
 
         while ($realNow->isFuture()) {
             if (faker()->boolean(80)) {
@@ -30,7 +30,7 @@ class AccountSeeder extends Seeder
                 }
 
                 if (faker()->boolean(1)) {
-                    $account->delete();
+                    $account->close();
                 }
             });
 
