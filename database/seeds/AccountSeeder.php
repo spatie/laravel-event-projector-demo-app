@@ -10,7 +10,7 @@ class AccountSeeder extends Seeder
     {
         $realNow = now();
 
-        Carbon::setTestNow(now()->subWeeks(2));
+        Carbon::setTestNow(now()->subDay(1));
 
         while ($realNow->isFuture()) {
             if (faker()->boolean(80)) {
