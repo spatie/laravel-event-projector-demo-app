@@ -1499,11 +1499,11 @@
         },
         {
             "name": "spatie/laravel-event-projector",
-            "version": "dev-list-fixes-2",
+            "version": "9999999-dev",
             "dist": {
                 "type": "path",
                 "url": "../laravel-event-projector",
-                "reference": "8a6680ac5df9d53d51d0bc8796318776b9e26d44",
+                "reference": "de8c8236dfdd52c4e6053bc17652bf99d0fa9eba",
                 "shasum": null
             },
             "require": {
