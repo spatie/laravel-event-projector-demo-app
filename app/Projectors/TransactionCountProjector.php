@@ -8,13 +8,10 @@ use App\TransactionCount;
 use Spatie\EventProjector\Models\StoredEvent;
 use Spatie\EventProjector\Projectors\Projector;
 use Spatie\EventProjector\Projectors\ProjectsEvents;
-use Spatie\EventProjector\Snapshots\CanTakeSnapshot;
-use Spatie\EventProjector\Snapshots\Snapshot;
-use Spatie\EventProjector\Snapshots\Snapshottable;
 
-class TransactionCountProjector implements Projector, Snapshottable
+class TransactionCountProjector implements Projector
 {
-    use ProjectsEvents, CanTakeSnapshot;
+    use ProjectsEvents;
 
     public $handlesEvents = [
         MoneyAdded::class => 'onMoneyAdded',
@@ -42,28 +39,6 @@ class TransactionCountProjector implements Projector, Snapshottable
     public function onStartingEventReplay()
     {
         TransactionCount::truncate();
-    }
-
-    public function writeToSnapshot(Snapshot $snapshot)
-    {
-        $serializableModels = TransactionCount::get()
-            ->map(function (TransactionCount $transactionCount) {
-                return $transactionCount->toArray();
-            })
-            ->toArray();
-
-        $serializedModels = serialize($serializableModels);
-
-        $snapshot->write($serializedModels);
-    }
-
-    public function restoreFromSnapshot(Snapshot $snapshot)
-    {
-        $serializedModels = unserialize($snapshot->read(), true);
-
-        foreach ($serializedModels as $modelAttributes) {
-            TransactionCount::create($modelAttributes);
-        }
     }
 
     public function resetState()

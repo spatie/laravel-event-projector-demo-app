@@ -11,6 +11,5 @@ class UnrelatedProjector implements Projector
 
     public function resetState()
     {
-
     }
 }

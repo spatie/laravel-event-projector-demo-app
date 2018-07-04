@@ -3,8 +3,8 @@
 namespace App\Projectors;
 
 use App\Account;
-use App\Events\AccountCreated;
 use App\Events\AccountClosed;
+use App\Events\AccountCreated;
 use App\Events\BrokeMailSent;
 use App\Events\MoneyAdded;
 use App\Events\MoneySubtracted;

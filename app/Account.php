@@ -2,8 +2,8 @@
 
 namespace App;
 
-use App\Events\AccountCreated;
 use App\Events\AccountClosed;
+use App\Events\AccountCreated;
 use App\Events\MoneyAdded;
 use App\Events\MoneySubtracted;
 use Illuminate\Database\Eloquent\Model;
