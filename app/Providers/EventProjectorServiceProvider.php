@@ -16,7 +16,7 @@ class EventProjectorServiceProvider extends ServiceProvider
     {
         EventProjectionist::addProjectors([
             AccountBalanceProjector::class,
-            TransactionCountProjector::class,
+            //TransactionCountProjector::class,
             UnrelatedProjector::class,
         ]);
 
