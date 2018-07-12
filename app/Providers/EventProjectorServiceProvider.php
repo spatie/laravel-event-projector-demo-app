@@ -8,19 +8,20 @@ use App\Projectors\UnrelatedProjector;
 use App\Reactors\BigAmountAddedReactor;
 use App\Reactors\BrokeReactor;
 use Illuminate\Support\ServiceProvider;
-use Spatie\EventProjector\Facades\EventProjectionist;
+use Spatie\EventProjector\Facades\Projectionist;
 
 class EventProjectorServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        EventProjectionist::addProjectors([
+        Projectionist::addProjectors([
             AccountBalanceProjector::class,
-            //TransactionCountProjector::class,
+            TransactionCountProjector::class,
             UnrelatedProjector::class,
         ]);
 
-        EventProjectionist::addReactors([
+
+        Projectionist::addReactors([
             BigAmountAddedReactor::class,
             BrokeReactor::class,
         ]);
