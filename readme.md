@@ -1,3 +1,6 @@
+
+[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/support-ukraine.svg?t=1" />](https://supportukrainenow.org)
+
 # Event sourcing for Artisans
 
 This repo contains a Laravel app with a dev version of the [laravel-event-projector](https://github.com/spatie/laravel-event-projector) installed into it.
